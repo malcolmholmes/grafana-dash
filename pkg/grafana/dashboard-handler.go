@@ -112,9 +112,10 @@ func (h *DashboardHandler) Preview(resource grizzly.Resource, notifier grizzly.N
 		return err
 	}
 	notifier.Info(resource, "view: "+s.URL)
-	notifier.Error(resource, "delete: "+s.DeleteURL)
 	if opts.ExpiresSeconds > 0 {
 		notifier.Warn(resource, fmt.Sprintf("Previews will expire and be deleted automatically in %d seconds\n", opts.ExpiresSeconds))
+	} else {
+		notifier.Error(resource, "delete: "+s.DeleteURL)
 	}
 	return nil
 }
