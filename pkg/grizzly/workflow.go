@@ -284,7 +284,7 @@ func Preview(registry Registry, resources Resources, opts *PreviewOpts) error {
 		previewHandler, ok := handler.(PreviewHandler)
 		if !ok {
 			registry.Notifier().NotSupported(resource, "preview")
-			return nil
+			continue
 		}
 		err = previewHandler.Preview(resource, *registry.Notifier(), opts)
 		if err != nil {
